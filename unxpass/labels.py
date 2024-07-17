@@ -124,7 +124,7 @@ def concedes_xg(actions: pd.DataFrame, nr_actions: int = 10) -> pd.DataFrame:
     # see https://fbref.com/en/expected-goals-model-explained
     y["sum"] = 1
     y["concedes_xg"] = 1 - y[
-        ["sum", "shot"] + ["shot+%d" % i for i in range(1, nr_actions)]
+        ["sum"] + ["shot+%d" % i for i in range(1, nr_actions)]
     ].apply(lambda shots: reduce(lambda agg, xg: agg * (1 - xg), shots), axis=1)
     return y[["concedes_xg"]]
 
